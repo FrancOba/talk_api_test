@@ -3,12 +3,13 @@ require "faraday"
 require "json"
 require "dotenv"
 
-# 環境変数読み込み
-Dotenv.load
+# 環境変数作成と読み込み
+API_URL = 'https://api.a3rt.recruit-tech.co.jp/talk/v1/smalltalk'
+Dotenv.load #api_key 読み込み
 
 module TalkApiTest
   def self.talk(word)
-    res = Faraday.post ENV['API_URL'], {
+    res = Faraday.post API_URL, {
       apikey: ENV['API_KEY'], # 必須
       query: word #任意
       # callback: 'application/javascript', # 必須 未指定時はapplication/json
